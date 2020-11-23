@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+	margin: 0px;
+	padding: 8px;
+}
+scabra-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+label {
+	font-weight: bold;
+}
+textarea {
+}
+button {
+	padding: 0.5em 0;
+}
+output {
+	background-color: #eee;
+	white-space: pre-wrap;
+}
+</style>
+
+<body>
+
+<form>
+	<scabra-stack>
+		<label for="textarea">Paste URLs</label>
+		<textarea id="textarea" autofocus rows="20" cols="40" spellcheck="false"></textarea>
+		<button type="submit">Open tabs</button>
+		<output></output>
+	</scabra-stack>
+</form>
+
+<script src="scabra_popup.js"></script>
