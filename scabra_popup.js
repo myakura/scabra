@@ -45,11 +45,21 @@ function getUrls(input) {
 	return urls;
 }
 
+function openTabs(urls) {
+	for (const url of urls) {
+		chrome.tabs.create({
+			url: url,
+			active: false,
+		});
+	}
+}
+
 form.addEventListener(`submit`, (event) => {
 	event.preventDefault();
 	const content = textarea.value.trim();
 	const parsedUrls = getUrls(content);
 	outputRaw.textContent = content;
 	outputUrls.textContent = parsedUrls.join(`\n`);
+	openTabs(parsedUrls);
 	textarea.value = ``;
 });
