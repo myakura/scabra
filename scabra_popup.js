@@ -1,7 +1,8 @@
 const form = document.querySelector(`form`);
 const textarea = document.querySelector(`textarea`);
 const button = document.querySelector(`button`);
-const output = document.querySelector(`output`);
+const outputRaw = document.querySelector(`#raw`);
+const outputUrls = document.querySelector(`#urls`);
 
 function startsWithMarkdownLink(string) {
 	return /\[(?:.+)\]\((?<url>https?\:\/\/.+)\)/.test(string);
@@ -21,9 +22,34 @@ function grabUrlFromPlaintext(string) {
 	return match.groups?.url;
 }
 
+function getUrls(input) {
+	const lines = input
+		.split(`\n`)
+		.filter((line) => /\S*/.test(line))
+		.filter((line) => {
+			return startsWithMarkdownLink(line) || startsWithUrl(line);
+		});
+
+	const urls = lines
+		.map((line) => {
+			if (startsWithMarkdownLink(line)) {
+				return grabUrlFromMarkdownLink(line);
+			} else if (startsWithUrl(line)) {
+				return grabUrlFromPlaintext(line);
+			} else {
+				return '';
+			}
+		})
+		.filter((item) => !!item);
+
+	return urls;
+}
+
 form.addEventListener(`submit`, (event) => {
 	event.preventDefault();
 	const content = textarea.value.trim();
-	output.textContent = content;
+	const parsedUrls = getUrls(content);
+	outputRaw.textContent = content;
+	outputUrls.textContent = parsedUrls.join(`\n`);
 	textarea.value = ``;
 });
