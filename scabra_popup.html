@@ -8,7 +8,7 @@ body {
 	padding: 8px;
 	font-family: sans-serif;
 }
-scabra-stack {
+.stack {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -33,13 +33,13 @@ output {
 <body>
 
 <form>
-	<scabra-stack>
+	<div class="stack">
 		<label for="textarea">Paste URLs</label>
 		<textarea id="textarea" autofocus rows="20" cols="40" spellcheck="false"></textarea>
 		<button type="submit">Open URLs</button>
 		<output id="raw"></output>
 		<output id="urls"></output>
-	</scabra-stack>
+	</div>
 </form>
 
 <script src="scabra_popup.js"></script>
