@@ -37,8 +37,12 @@ output {
 		<label for="textarea">Paste URLs</label>
 		<textarea id="textarea" autofocus rows="20" cols="40" spellcheck="false"></textarea>
 		<button type="submit">Open URLs</button>
-		<output id="raw"></output>
-		<output id="urls"></output>
+		<details class="stack">
+			<label for="raw">Input</label>
+			<output id="raw"></output>
+			<label for="urls">Parsed URLs</label>
+			<output id="urls"></output>
+		</details>
 	</div>
 </form>
 
