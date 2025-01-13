@@ -1,11 +1,15 @@
 {
 	"manifest_version": 2,
 	"name": "Scabra",
-	"description": "Open multiple URLs at once.",
-	"version": "0.9.2",
+	"description": "Open URLs at once.",
+	"version": "0.9.3",
+	"icons": {
+		"48": "icons/icon_gray.png",
+		"96": "icons/icon_gray.png"
+	},
 	"browser_action": {
 		"default_title": "Open URLs",
-		"default_icon": "icon.png",
+		"default_icon": "icons/icon_lightgray.png",
 		"default_popup": "scabra_popup.html"
 	},
 	"commands": {
