@@ -47,10 +47,7 @@ function getUrls(input) {
 
 function openTabs(urls) {
 	for (const url of urls) {
-		chrome.tabs.create({
-			url: url,
-			active: false,
-		});
+		chrome.tabs.create({ url: url, active: false });
 	}
 }
 
