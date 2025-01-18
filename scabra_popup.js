@@ -60,3 +60,18 @@ form.addEventListener('submit', (event) => {
 	openTabs(parsedUrls);
 	textarea.value = '';
 });
+
+
+// getting dark/light mode status for changing action button icon
+function isDarkMode() {
+	if (typeof window === 'undefined' || !('matchMedia' in window)) {
+		return false;
+	}
+	return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.type === 'get-light-dark-mode') {
+		sendResponse({ type: 'light-dark-mode-update', isDarkMode: isDarkMode() });
+	}
+});

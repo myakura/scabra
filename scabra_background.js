@@ -1,25 +1,28 @@
-function isDarkMode() {
-	if (typeof window === 'undefined' || !('matchMedia' in window)) {
-		return false;
-	}
-	return window.matchMedia('(prefers-color-scheme: dark)').matches;
+function updateIcon({ isDarkMode = false }) {
+	const icon = isDarkMode ? 'icons/icon_white.png' : 'icons/icon_black.png';
+	chrome.browserAction.setIcon({ path: icon });
 }
 
-function updateIcon() {
-	const icon = isDarkMode() ? 'icons/icon_white.png' : 'icons/icon_black.png';
-	chrome.action.setIcon({ path: icon });
+chrome.runtime.onMessage.addListener((message) => {
+	if (message.type === 'light-dark-mode-update') {
+		updateIcon({ isDarkMode: message.isDarkMode });
+	}
+});
+
+function pingColorModeUpdate() {
+	chrome.runtime.sendMessage({ type: 'get-light-dark-mode' });
 }
 
 chrome.windows.onFocusChanged.addListener(() => {
-	updateIcon();
+	pingColorModeUpdate();
 });
 
 chrome.tabs.onActivated.addListener(() => {
-	updateIcon();
+	pingColorModeUpdate();
 });
 
 chrome.tabs.onHighlighted.addListener(() => {
-	updateIcon();
+	pingColorModeUpdate();
 });
 
-updateIcon();
+pingColorModeUpdate();
