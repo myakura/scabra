@@ -1,6 +1,6 @@
 function updateIcon({ isDarkMode = false }) {
 	const icon = isDarkMode ? 'icons/icon_white.png' : 'icons/icon_black.png';
-	chrome.browserAction.setIcon({ path: icon });
+	chrome.action.setIcon({ path: icon });
 }
 
 chrome.runtime.onMessage.addListener((message) => {
