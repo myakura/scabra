@@ -2,16 +2,18 @@
 	"manifest_version": 3,
 	"name": "Scabra",
 	"description": "Open URLs at once.",
-	"version": "0.11.0",
+	"version": "0.12.0",
 	"permissions": ["activeTab"],
 	"icons": {
 		"48": "icons/icon_gray.png",
 		"96": "icons/icon_gray.png"
 	},
-	"background": {
-		"scripts": ["scabra_background.js"],
-		"service_worker": "scabra_background.js"
-	},
+	"theme_icons": [
+		{
+			"light": "icons/icon_black.png",
+			"dark": "icons/icon_white.png"
+		}
+	],
 	"action": {
 		"default_title": "Open URLs",
 		"default_icon": "icons/icon_lightgray.png",
