@@ -34,9 +34,11 @@ function getUrls(input) {
 		.map((line) => {
 			if (startsWithMarkdownLink(line)) {
 				return grabUrlFromMarkdownLink(line);
-			} else if (startsWithUrl(line)) {
+			}
+			else if (startsWithUrl(line)) {
 				return grabUrlFromPlaintext(line);
-			} else {
+			}
+			else {
 				return '';
 			}
 		})
